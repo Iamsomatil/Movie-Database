@@ -1,19 +1,8 @@
 import React from 'react';
 import { Star, Clock, Check } from 'lucide-react';
-import { Movie } from '../types/movie';
 import { TMDB_IMAGE_BASE_URL } from '../config/api';
 
-interface MovieCardProps {
-  movie: Movie;
-  onAddToWatchlist: (movie: Movie) => void;
-  isInWatchlist: boolean;
-}
-
-export const MovieCard: React.FC<MovieCardProps> = ({ 
-  movie, 
-  onAddToWatchlist, 
-  isInWatchlist 
-}) => {
+export const MovieCard = ({ movie, onAddToWatchlist, isInWatchlist }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
       <img
@@ -30,25 +19,27 @@ export const MovieCard: React.FC<MovieCardProps> = ({
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-1">
             <Star className="w-4 h-4 text-yellow-400" />
-            <span className="text-sm">{movie.vote_average.toFixed(1)}</span>
+            <span className="text-sm text-gray-600">
+              {movie.vote_average.toFixed(1)}
+            </span>
           </div>
           <button
             onClick={() => onAddToWatchlist(movie)}
-            className={`flex items-center space-x-1 text-sm ${
-              isInWatchlist 
-                ? 'text-green-600 hover:text-green-800' 
-                : 'text-blue-600 hover:text-blue-800'
+            className={`flex items-center space-x-1 px-3 py-1 rounded-full text-sm ${
+              isInWatchlist
+                ? 'bg-green-500 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
           >
             {isInWatchlist ? (
               <>
                 <Check className="w-4 h-4" />
-                <span>In Watchlist</span>
+                <span>Added</span>
               </>
             ) : (
               <>
                 <Clock className="w-4 h-4" />
-                <span>Add to Watchlist</span>
+                <span>Watch Later</span>
               </>
             )}
           </button>

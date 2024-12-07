@@ -2,12 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { getGenres } from '../services/movieService';
 
-interface GenreFilterProps {
-  selectedGenres: number[];
-  onGenreSelect: (genreId: number) => void;
-}
-
-export const GenreFilter: React.FC<GenreFilterProps> = ({ selectedGenres, onGenreSelect }) => {
+export const GenreFilter = ({ selectedGenres, onGenreSelect }) => {
   const { data: genres = [] } = useQuery('genres', getGenres);
 
   return (

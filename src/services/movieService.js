@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { TMDB_API_KEY, TMDB_BASE_URL } from '../config/api';
-import { Movie, Genre } from '../types/movie';
 
 const api = axios.create({
   baseURL: TMDB_BASE_URL,
@@ -9,7 +8,7 @@ const api = axios.create({
   },
 });
 
-export const searchMovies = async (query: string, page: number = 1): Promise<{ results: Movie[], total_pages: number }> => {
+export const searchMovies = async (query, page = 1) => {
   const response = await api.get('/search/movie', {
     params: { query, page },
   });
@@ -19,7 +18,7 @@ export const searchMovies = async (query: string, page: number = 1): Promise<{ r
   };
 };
 
-export const getPopularMovies = async (page: number = 1): Promise<{ results: Movie[], total_pages: number }> => {
+export const getPopularMovies = async (page = 1) => {
   const response = await api.get('/movie/popular', {
     params: { page },
   });
@@ -29,7 +28,7 @@ export const getPopularMovies = async (page: number = 1): Promise<{ results: Mov
   };
 };
 
-export const getGenres = async (): Promise<Genre[]> => {
+export const getGenres = async () => {
   const response = await api.get('/genre/movie/list');
   return response.data.genres;
 };

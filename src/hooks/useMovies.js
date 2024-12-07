@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { getPopularMovies, searchMovies } from "../services/movieService";
 
-export const useMovies = (searchQuery: string = "", page: number = 1) => {
+export const useMovies = (searchQuery = "", page = 1) => {
   return useQuery(
     ["movies", searchQuery, page],
     () => (searchQuery ? searchMovies(searchQuery, page) : getPopularMovies(page)),
