@@ -2,7 +2,7 @@ import React from 'react';
 import { Star, Clock, Check } from 'lucide-react';
 import { TMDB_IMAGE_BASE_URL } from '../config/api';
 
-export const MovieCard = ({ movie, onAddToWatchlist, isInWatchlist }) => {
+export const MovieCard = ({ movie, onWatchlistToggle, isInWatchlist }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
       <img
@@ -24,7 +24,7 @@ export const MovieCard = ({ movie, onAddToWatchlist, isInWatchlist }) => {
             </span>
           </div>
           <button
-            onClick={() => onAddToWatchlist(movie)}
+            onClick={() => onWatchlistToggle(movie)}
             className={`flex items-center space-x-1 px-3 py-1 rounded-full text-sm ${
               isInWatchlist
                 ? 'bg-green-500 text-white'
